@@ -8,7 +8,6 @@ const typeDefs = gql`
     password: String
     age: Number
   }
-
   type Discussion{
     _id: ID
     title: String
@@ -18,22 +17,6 @@ const typeDefs = gql`
       key: 'id'
     }
   }
-
-  type Workout {
-    _id: ID
-    title: String
-    time: String
-    type: refrence{
-      model: Schedule,
-      key: 'dates'
-    }
-    detail: String
-    user_id: refrence{
-      model: User,
-      key: 'id'
-    }
-  }
-
   type Schedule {
     _id: ID
     content: String
@@ -44,26 +27,9 @@ const typeDefs = gql`
       key: 'id'
     }
   }
-
-  type Comment {
-    _id: ID
-    comment_text: String
-    user_id: refrence{
-      model: User,
-      key: 'id'
-    }
-    discussion_id: refrence{
-      model: Discussion,
-      key: 'id'
-    }
-  }
-
   type Query {
     user: [User],
-    discussion: [Discussion],
-    schedule: [Schedule],
-    workout: [Workout],
-    comment: [Comment]
+    discussion: [Discussion]
   }
 `;
 
