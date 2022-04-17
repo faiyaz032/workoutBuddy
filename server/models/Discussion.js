@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const User = require('./User');
+const Comment = require('./Comment');
 
 const DiscussionSchema = new Schema(
    {
@@ -11,10 +12,7 @@ const DiscussionSchema = new Schema(
          type: String,
          required: true,
       },
-      date: {
-         type: Number,
-         required: true,
-      },
+
       user_id: {
          type: String,
          references: {
