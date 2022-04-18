@@ -1,6 +1,4 @@
-const { Schema, model } = require('mongoose');
-const User = require('./User');
-const Comment = require('./Comment');
+const { Types, Schema, model } = require('mongoose');
 
 const DiscussionSchema = new Schema(
    {
@@ -8,17 +6,15 @@ const DiscussionSchema = new Schema(
          type: String,
          required: true,
       },
+
       content: {
          type: String,
          required: true,
       },
 
-      user_id: {
-         type: String,
-         references: {
-            model: User,
-            key: 'id',
-         },
+      user: {
+         type: Types.ObjectId,
+         ref: 'User',
          required: true,
       },
    },
