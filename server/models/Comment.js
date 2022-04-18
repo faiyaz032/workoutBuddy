@@ -11,11 +11,6 @@ const commentSchema = new Schema(
          required: true,
          ref: 'User',
       },
-      discussion: {
-         type: Types.ObjectId,
-         ref: 'Disucssion',
-         required: true,
-      },
    },
    {
       timestamps: true,
