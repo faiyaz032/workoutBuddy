@@ -26,6 +26,7 @@ const resolvers = {
    Mutation: {
       //Users
       async createUser(_parent, args) {},
+      async login(_parent, { email, password }) {},
 
       //Workouts
       async createWorkout(_parent, args) {},

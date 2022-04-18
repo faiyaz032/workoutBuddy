@@ -41,6 +41,11 @@ const typeDefs = gql`
       discussion: Discussion
    }
 
+   type Auth {
+      token: String
+      user: User
+   }
+
    # INPUTS
    input UserInput {
       name: String!
@@ -103,6 +108,7 @@ const typeDefs = gql`
    type Mutation {
       #Mutations for User
       createUser(user: UserInput): User
+      login(email: String!, password: String!): Auth
 
       #Mutations for Workout
       createWorkout(workout: WorkoutInput): Workout
