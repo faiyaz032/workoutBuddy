@@ -107,7 +107,7 @@ const typeDefs = gql`
    #Root Mutations
    type Mutation {
       #Mutations for User
-      createUser(user: UserInput): User
+      createUser(user: UserInput): Auth
       login(email: String!, password: String!): Auth
 
       #Mutations for Workout

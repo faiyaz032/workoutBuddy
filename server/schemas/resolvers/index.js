@@ -1,10 +1,8 @@
-const { User } = require('../models');
-
+const userResolvers = require('./user');
 const resolvers = {
    Query: {
       //Users
-      async getAllUsers() {},
-      async getUser(_parent, { id }) {},
+      ...userResolvers.Query,
 
       //Workouts
       async getAllWorkouts() {},
@@ -25,9 +23,7 @@ const resolvers = {
 
    Mutation: {
       //Users
-      async createUser(_parent, args) {},
-      async login(_parent, { email, password }) {},
-
+      ...userResolvers.Mutation,
       //Workouts
       async createWorkout(_parent, args) {},
 
