@@ -4,6 +4,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const path = require('path');
 const cors = require('cors');
+const { isAuth } = require('./middlewares/isAuth');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -18,6 +19,7 @@ app.use(
 const server = new ApolloServer({
    typeDefs,
    resolvers,
+   context: isAuth,
 });
 
 server.applyMiddleware({ app });

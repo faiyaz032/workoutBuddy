@@ -1,6 +1,6 @@
 const User = require('../../models/User');
-const { ApolloError } = require('apollo-server-errors');
-const { sign } = require('jsonwebtoken');
+const { ApolloError, AuthenticationError } = require('apollo-server-errors');
+const { signToken } = require('../../utils/signToken');
 
 module.exports = {
    Query: {
@@ -8,11 +8,21 @@ module.exports = {
          try {
             return await User.find({});
          } catch (error) {
+            console.log(error);
             throw new ApolloError(error);
          }
       },
 
-      async getUser(_parent, { id }) {},
+      async getUser(_parent, { id }) {
+         try {
+            const user = await User.findById(id);
+            if (!user) throw new ApolloError('Failed to find any user with provided user ID');
+            return user;
+         } catch (error) {
+            console.log(error);
+            throw new ApolloError(error);
+         }
+      },
    },
 
    Mutation: {
@@ -27,16 +37,7 @@ module.exports = {
             const user = await User.create({ name, email: email.toLowerCase(), username, password, age });
 
             //sign token
-            const token = sign(
-               {
-                  id: user._id,
-                  email,
-               },
-               'UNSAFE_TOKEN',
-               {
-                  expiresIn: '3h',
-               }
-            );
+            const token = signToken(user._id, user.email);
 
             return { token, user };
          } catch (error) {
@@ -44,6 +45,50 @@ module.exports = {
             throw new ApolloError(error);
          }
       },
-      async login(_parent, { email, password }) {},
+
+      async login(_parent, { email, password }) {
+         try {
+            const user = await User.findOne({ email });
+            if (!user) throw new ApolloError('Failed to find any user with this email');
+
+            const isValidPassword = await user.validatePassword(password);
+
+            if (!isValidPassword) throw new ApolloError('Incorrect Password! Please enter the correct password.');
+
+            return { token: signToken(user._id, email), user };
+         } catch (error) {
+            console.log(error);
+            throw new ApolloError(error);
+         }
+      },
+
+      async updateUser(_parent, args, { isAuth, userId }) {
+         if (!isAuth) throw new AuthenticationError('You are not authenticated!');
+
+         try {
+            const user = await User.findByIdAndUpdate(
+               userId,
+               {
+                  ...args.user,
+               },
+               { new: true }
+            );
+
+            return user;
+         } catch (error) {
+            throw new ApolloError(error);
+         }
+      },
+
+      async deleteUser(_parent, _args, { isAuth, userId }) {
+         if (!isAuth) throw new AuthenticationError('You are not authenticated!');
+
+         try {
+            const deletedUser = await User.findByIdAndDelete(userId);
+            return `User deleted successfully. Deleted user's ID: ${deletedUser._id}`;
+         } catch (error) {
+            throw new ApolloError(error);
+         }
+      },
    },
 };

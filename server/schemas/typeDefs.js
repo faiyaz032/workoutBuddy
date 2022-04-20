@@ -81,8 +81,17 @@ const typeDefs = gql`
       discussion: ID
    }
 
+   #Inputs for updates
+   input UserUpdateInput {
+      name: String
+      email: String
+      username: String
+      age: Int
+   }
+
    #Root Query
    type Query {
+      testUser: String
       #Queries for User
       getAllUsers: [User]
       getUser(id: ID): User
@@ -109,6 +118,8 @@ const typeDefs = gql`
       #Mutations for User
       createUser(user: UserInput): Auth
       login(email: String!, password: String!): Auth
+      updateUser(user: UserUpdateInput): User
+      deleteUser: String
 
       #Mutations for Workout
       createWorkout(workout: WorkoutInput): Workout

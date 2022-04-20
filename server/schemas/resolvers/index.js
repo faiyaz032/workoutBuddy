@@ -24,6 +24,7 @@ const resolvers = {
    Mutation: {
       //Users
       ...userResolvers.Mutation,
+
       //Workouts
       async createWorkout(_parent, args) {},
 

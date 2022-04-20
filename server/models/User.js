@@ -19,10 +19,11 @@ const UserSchema = new Schema(
       password: {
          type: String,
          required: true,
-         validate: [
-            isStrongPassword,
-            'Password must have 8 charachters, 1 lowercase, 1 uppercase, 1 number and 1 symbol',
-         ],
+         //Todo: Need to uncomment this validation later
+         // validate: [
+         //    isStrongPassword,
+         //    'Password must have 8 charachters, 1 lowercase, 1 uppercase, 1 number and 1 symbol',
+         // ],
       },
       age: {
          type: Number,
@@ -46,6 +47,13 @@ UserSchema.pre('save', async function (next) {
       return next(error);
    }
 });
+
+UserSchema.methods = {
+   //helper function for validate the password
+   async validatePassword(password) {
+      return bcrypt.compare(password, this.password);
+   },
+};
 
 const User = model('User', UserSchema);
 
