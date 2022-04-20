@@ -91,7 +91,6 @@ const typeDefs = gql`
 
    #Root Query
    type Query {
-      testUser: String
       #Queries for User
       getAllUsers: [User]
       getUser(id: ID): User
