@@ -7,8 +7,7 @@ This is the track of my progress according to the dates.<br>
 **Date: 20th April**
 
 1. Initial User Authentication with JWT.
-2. Completed User CRUD operation such as (Get all users, Get User, Update User and Delete User).
-
+2. Completed User CRUD operation such as (Get all users, Get User, Update User and Delete User).<br>
    NOTE: _Will impliment "Change Password" and "Forget Password" functionality later._
 
 **Date: 18th April**
