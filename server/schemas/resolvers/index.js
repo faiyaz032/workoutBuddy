@@ -1,4 +1,6 @@
 const userResolvers = require('./user');
+const discussionResolvers = require('./discussion');
+
 const resolvers = {
    Query: {
       //Users
@@ -13,8 +15,7 @@ const resolvers = {
       async getSchedule(_parent, { id }) {},
 
       //Discussions
-      async getAllDiscussions() {},
-      async getDiscussion(_parent, { id }) {},
+      ...discussionResolvers.Query,
 
       //Comments
       async getAllComments() {},
@@ -32,7 +33,7 @@ const resolvers = {
       async createSchedule(_parent, args) {},
 
       //Discussion
-      async createDiscussion(_parent, args) {},
+      ...discussionResolvers.Mutation,
 
       //Comments
       async createComment(_parent, args) {},

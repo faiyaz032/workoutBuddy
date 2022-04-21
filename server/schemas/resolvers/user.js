@@ -76,6 +76,7 @@ module.exports = {
 
             return user;
          } catch (error) {
+            console.log(error);
             throw new ApolloError(error);
          }
       },
@@ -87,6 +88,7 @@ module.exports = {
             const deletedUser = await User.findByIdAndDelete(userId);
             return `User deleted successfully. Deleted user's ID: ${deletedUser._id}`;
          } catch (error) {
+            console.log(error);
             throw new ApolloError(error);
          }
       },

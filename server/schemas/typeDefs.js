@@ -26,11 +26,13 @@ const typeDefs = gql`
       user: User
    }
 
+   # Need to fix the Date in Discussion query.
    type Discussion {
       id: ID
       title: String
       content: String
       user: User
+      #createdAt: String
       comments: [Comment]
    }
 
@@ -72,7 +74,6 @@ const typeDefs = gql`
    input DiscussionInput {
       title: String
       content: String
-      user: ID!
    }
 
    input CommentInput {
@@ -106,6 +107,7 @@ const typeDefs = gql`
       #Queries for Discussion
       getAllDiscussions: [Discussion]
       getDiscussion(id: ID): Discussion
+      getUserDiscussions: [Discussion]
 
       #Queries for Comment
       getAllComments: [Comment]
@@ -128,6 +130,8 @@ const typeDefs = gql`
 
       #Mutations for Discussion
       createDiscussion(discussion: DiscussionInput): Discussion
+      updateDiscussion(id: ID, discussion: DiscussionInput): Discussion
+      deleteDiscussion(id: ID): String
 
       #Mutations for Comment
       createComment(comment: CommentInput): Comment
