@@ -7,19 +7,19 @@ const resolvers = {
       ...userResolvers.Query,
 
       //Workouts
-      async getAllWorkouts() {},
-      async getWorkout(_parent, { id }) {},
+      // async getAllWorkouts() {},
+      // async getWorkout(_parent, { id }) {},
 
       //Schedules
-      async getAllSchedules() {},
-      async getSchedule(_parent, { id }) {},
+      // async getAllSchedules() {},
+      // async getSchedule(_parent, { id }) {},
 
       //Discussions
       ...discussionResolvers.Query,
 
       //Comments
-      async getAllComments() {},
-      async getComment(_parent, { id }) {},
+      // async getAllComments() {},
+      // async getComment(_parent, { id }) {},
    },
 
    Mutation: {
@@ -27,16 +27,16 @@ const resolvers = {
       ...userResolvers.Mutation,
 
       //Workouts
-      async createWorkout(_parent, args) {},
+      // async createWorkout(_parent, args) {},
 
       //Schedule
-      async createSchedule(_parent, args) {},
+      // async createSchedule(_parent, args) {},
 
       //Discussion
       ...discussionResolvers.Mutation,
 
       //Comments
-      async createComment(_parent, args) {},
+      // async createComment(_parent, args) {},
    },
 };
 

@@ -97,12 +97,12 @@ const typeDefs = gql`
       getUser(id: ID): User
 
       #Queries for Workout
-      getAllWorkouts: [Workout]
-      getWorkout(id: ID): Workout
+      #getAllWorkouts: [Workout]
+      #getWorkout(id: ID): Workout
 
       #Queries for Schedule
-      getAllSchedules: [Schedule]
-      getSchedule(id: ID): Schedule
+      #getAllSchedules: [Schedule]
+      #getSchedule(id: ID): Schedule
 
       #Queries for Discussion
       getAllDiscussions: [Discussion]
@@ -110,8 +110,8 @@ const typeDefs = gql`
       getUserDiscussions: [Discussion]
 
       #Queries for Comment
-      getAllComments: [Comment]
-      getComment(id: ID): Comment
+      #getAllComments: [Comment]
+      #getComment(id: ID): Comment
    }
 
    #Root Mutations
@@ -123,10 +123,10 @@ const typeDefs = gql`
       deleteUser: String
 
       #Mutations for Workout
-      createWorkout(workout: WorkoutInput): Workout
+      #createWorkout(workout: WorkoutInput): Workout
 
       #Mutations for Schedule
-      createSchedule(schedule: ScheduleInput): Schedule
+      #createSchedule(schedule: ScheduleInput): Schedule
 
       #Mutations for Discussion
       createDiscussion(discussion: DiscussionInput): Discussion
@@ -134,7 +134,7 @@ const typeDefs = gql`
       deleteDiscussion(id: ID): String
 
       #Mutations for Comment
-      createComment(comment: CommentInput): Comment
+      #createComment(comment: CommentInput): Comment
    }
 `;
 
