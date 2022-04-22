@@ -40,7 +40,6 @@ const typeDefs = gql`
       id: ID
       comment_text: String
       user: User
-      discussion: Discussion
    }
 
    type Auth {
@@ -77,9 +76,8 @@ const typeDefs = gql`
    }
 
    input CommentInput {
+      discussionId: ID!
       comment_text: String
-      user: ID!
-      discussion: ID
    }
 
    #Inputs for updates
@@ -110,8 +108,6 @@ const typeDefs = gql`
       getUserDiscussions: [Discussion]
 
       #Queries for Comment
-      #getAllComments: [Comment]
-      #getComment(id: ID): Comment
    }
 
    #Root Mutations
@@ -130,11 +126,13 @@ const typeDefs = gql`
 
       #Mutations for Discussion
       createDiscussion(discussion: DiscussionInput): Discussion
-      updateDiscussion(id: ID, discussion: DiscussionInput): Discussion
+      editDiscussion(id: ID, discussion: DiscussionInput): Discussion
       deleteDiscussion(id: ID): String
 
       #Mutations for Comment
-      #createComment(comment: CommentInput): Comment
+      createComment(comment: CommentInput): Comment
+      editComment(id: ID, comment_text: String): Comment
+      deleteComment(id: ID): String
    }
 `;
 

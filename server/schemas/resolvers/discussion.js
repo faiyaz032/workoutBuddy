@@ -14,11 +14,21 @@ module.exports = {
 
       async getDiscussion(_parent, { id }) {
          try {
-            const discussion = await Discussion.findById(id).populate('user', '_id username name email');
+            const discussion = await Discussion.findById(id)
+               .populate('user', '_id username name email')
+               .populate({
+                  path: 'comments',
+                  populate: {
+                     path: 'user',
+                     model: 'User',
+                  },
+               });
+
             if (!discussion) throw new ApolloError('Failed to find any discussion with the provided ID');
 
             return discussion;
          } catch (error) {
+            console.log(error);
             throw new ApolloError(error);
          }
       },
@@ -55,7 +65,7 @@ module.exports = {
          }
       },
 
-      async updateDiscussion(_parent, { id, discussion }, { isAuth }) {
+      async editDiscussion(_parent, { id, discussion }, { isAuth }) {
          if (!isAuth) throw new AuthenticationError('You are not authenticated!');
 
          try {

@@ -1,5 +1,6 @@
 const userResolvers = require('./user');
 const discussionResolvers = require('./discussion');
+const commentResolvers = require('./comment');
 
 const resolvers = {
    Query: {
@@ -18,8 +19,7 @@ const resolvers = {
       ...discussionResolvers.Query,
 
       //Comments
-      // async getAllComments() {},
-      // async getComment(_parent, { id }) {},
+      ...commentResolvers.Query,
    },
 
    Mutation: {
@@ -36,7 +36,7 @@ const resolvers = {
       ...discussionResolvers.Mutation,
 
       //Comments
-      // async createComment(_parent, args) {},
+      ...commentResolvers.Mutation,
    },
 };
 
