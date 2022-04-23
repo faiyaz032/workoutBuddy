@@ -1,8 +1,17 @@
 # Updates of Hassan
 
-Update: I'm currently working on **"User Authentication"** and **"Discussion"**.
+Update: Completed **"User Authentication"**, **"Discussion"** and **Comments**.
 
 This is the track of my progress according to the dates.<br>
+
+**Date: 22th April**
+
+1. Discussion CRUD Opretaions Query and Mutations.
+2. Comment CRUD operations Query and Mutations.
+
+   **Summary:** _User can now post discussion and do comments. They can also edit and delete discussion and comments_
+
+   To test the queries and mutations, Just start the server and goto: http://localhost:3001/graphql and check out the docs and schema then you will get the idea of all the queires and mutations.
 
 **Date: 20th April**
 
